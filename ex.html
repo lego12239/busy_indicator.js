@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>busy indicator example</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="busy_indicator.css" type="text/css"/>
+  <style type="text/css">
+    .fog_div {
+      display: none;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+      z-index: 100;
+      background-color: rgba(30, 30, 30, 0.5);
+    }
+  </style>
+  <script src="busy_indicator.js" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+    var busyi;
+
+    function init()
+    {
+      busyi = new busy_indicator(document.getElementById("busybox"),
+        document.querySelector("#busybox div"));
+
+      busyi.show();
+      setTimeout(finish, 10000);
+    }
+    function finish()
+    {
+      busyi.hide();
+    }
+  </script>
+</head>
+<body onload="init()">
+<!----------------------------------------------------------------------
+        Busy indicator
+----------------------------------------------------------------------->
+<div id="busybox" class="fog_div">
+        <div></div>
+</div>
+
+Busy indicator demonstration
+</body>
+</html>
