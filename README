@@ -1,0 +1,24 @@
+busy_indicator
+==============
+
+A javascript library for displaying a busy indicator.
+
+Using
+=====
+
+Example:
+
+var busyi = new busy_indicator(document.getElementById("busybox"),
+  document.querySelector("#busybox div"));
+busyi.show();
+setTimeout(function () { busyi.hide();}, 10000);
+
+The constructor can also accepts a show callback and a hide callback, which
+are called on show() and hide() actions.
+
+show() can be called many times - only the first call performs show actions and
+executes a show callback, subsequent calls only increase internal counter. In
+this case, hide() must be called an equal number of times - only the last call
+performs hide actions and executes a hide callback.
+
+Example - ex.html.
