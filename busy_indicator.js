@@ -34,8 +34,6 @@ function busy_indicator(cntr_el, img_el, show_cb, hide_cb)
 		this.cb.hide = hide_cb;
 
 	this.cnt = 0;
-
-	this.align();
 }
 
 busy_indicator.prototype._set_prm = function (n, v)
@@ -43,18 +41,6 @@ busy_indicator.prototype._set_prm = function (n, v)
 	if (( v == undefined ) || ( v == null ))
 		throw("busy_indicator: " + n + " is not supplied");
 	this[n] = v;
-}
-
-busy_indicator.prototype.align = function ()
-{
-	if (this.el.img == null)
-		return;
-	
-    this.pos.x = window.innerWidth/2 - this.el.img.offsetWidth/2;
-    this.pos.y = window.innerHeight/2 - this.el.img.offsetHeight/2;
-
-	this.el.img.style.top = this.pos.y + "px";
-	this.el.img.style.left = this.pos.x + "px";
 }
 
 busy_indicator.prototype.show = function ()
@@ -70,9 +56,33 @@ busy_indicator.prototype.show = function ()
 	document.body.onkeypress = function (ev) { ev.preventDefault() };
 
 	this.el.cntr.classList.add(this.show_class);
+
+	this.align();
 	
 	if (this.cb.show != undefined)
 		this.cb.show();
+}
+
+busy_indicator.prototype.align = function ()
+{
+	if (this.el.img == null)
+		return;
+	
+	this.pos = this.calc_pos();
+
+	this.el.img.style.top = this.pos.y + "px";
+	this.el.img.style.left = this.pos.x + "px";
+}
+
+busy_indicator.prototype.calc_pos = function ()
+{
+	var x, y;
+
+
+	x = this.el.cntr.clientWidth/2 - this.el.img.offsetWidth/2;
+	y = this.el.cntr.clientHeight/2 - this.el.img.offsetHeight/2;
+	
+	return {x: x, y: y};
 }
 
 busy_indicator.prototype.hide = function ()
