@@ -23,6 +23,7 @@ function busy_indicator(cntr_el, img_el, show_cb, hide_cb)
 	this.el = {};
 	this.cb = {show: null, hide: null};
 	this.pos = {x: 0, y: 0};
+	this.show_class = "show";
 
 
 	this._set_prm.call(this.el, "cntr", cntr_el);
@@ -68,7 +69,7 @@ busy_indicator.prototype.show = function ()
 
 	document.body.onkeypress = function (ev) { ev.preventDefault() };
 
-	this.el.cntr.style.display = "block";
+	this.el.cntr.classList.add(this.show_class);
 	
 	if (this.cb.show != undefined)
 		this.cb.show();
@@ -86,7 +87,7 @@ busy_indicator.prototype.hide = function ()
 
 	document.body.onkeypress = "";
 
-	this.el.cntr.style.display = "none";
+	this.el.cntr.classList.remove(this.show_class);
 
 	if (this.cb.hide != undefined)
 		this.cb.hide();
