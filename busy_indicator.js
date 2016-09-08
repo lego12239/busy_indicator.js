@@ -26,7 +26,7 @@ function busy_indicator(cntr_el, img_el, show_cb, hide_cb)
 
 
 	this._set_prm.call(this.el, "cntr", cntr_el);
-	this._set_prm.call(this.el, "img", img_el);
+	this.el.img = img_el;
 	if (show_cb != undefined)
 		this.cb.show = show_cb;
 	if (hide_cb != undefined)
@@ -46,6 +46,9 @@ busy_indicator.prototype._set_prm = function (n, v)
 
 busy_indicator.prototype.align = function ()
 {
+	if (this.el.img == null)
+		return;
+	
     this.pos.x = window.innerWidth/2 - this.el.img.offsetWidth/2;
     this.pos.y = window.innerHeight/2 - this.el.img.offsetHeight/2;
 
