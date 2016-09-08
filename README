@@ -21,4 +21,4 @@ executes a show callback, subsequent calls only increase internal counter. In
 this case, hide() must be called an equal number of times - only the last call
 performs hide actions and executes a hide callback.
 
-Example - ex.html.
+Examples - ex*.html.
