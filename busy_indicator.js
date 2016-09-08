@@ -53,8 +53,6 @@ busy_indicator.prototype.show = function ()
 	if ( this.cnt > 1 )
 		return;
 
-	document.body.onkeypress = function (ev) { ev.preventDefault() };
-
 	this.el.cntr.classList.add(this.show_class);
 
 	this.align();
@@ -94,8 +92,6 @@ busy_indicator.prototype.hide = function ()
 
 	if ( this.cnt )
 		return;
-
-	document.body.onkeypress = "";
 
 	this.el.cntr.classList.remove(this.show_class);
 
